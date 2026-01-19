@@ -7,3 +7,9 @@ print(args.echo) # imprime. parser.add_argumento("echo") -> args.echo (compilado
 print(args.square**2) 
 
 
+#Argumentos opcionais 
+parser.add_argument("--verbosity", help="increase output verbosity. ")
+args = parser.parse_args()
+if args.verbosity:
+    print("Verbosity turned on. ")
+# Esse tipo de argumento não é necessário para rodar o programa Quando não informamos, "verbosity" recebe None.
