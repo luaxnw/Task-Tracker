@@ -1,15 +1,15 @@
-import argparse
-parser = argparse.ArgumentParser() # objeto parser: lê argumentos da linha de comando, valida e gera mensagens de help
-parser.add_argument("echo", help="echo the string you use here. ",type=str) #nome argumento, mensagem help, tipo
-parser.add_argument("square", help="display a square of a given number. ",type=int) 
-args = parser.parse_args() # lê argumentos do terminal, valida os tipos, cria um objeto args com os valores
-print(args.echo) # imprime. parser.add_argumento("echo") -> args.echo (compilador lê o nome do argumento e transnforma nisso)
-print(args.square**2) 
+import json 
+import os
 
+FILE = "task.json"
 
-#Argumentos opcionais 
-parser.add_argument("--verbosity", help="increase output verbosity. ")
-args = parser.parse_args()
-if args.verbosity:
-    print("Verbosity turned on. ")
-# Esse tipo de argumento não é necessário para rodar o programa Quando não informamos, "verbosity" recebe None.
+def load_data():
+    if not os.path.exists(FILE):
+        return {"last_id" : 0, "tasks" : []}
+    
+    with open(FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_data(data):
+    with open(FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)

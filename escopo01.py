@@ -1,6 +1,10 @@
 import argparse
 import time
 import json
+from task import load_data, save_data
+
+data = load_data()
+new_id = data["last_id"] + 1
 
 counter = 0
 
@@ -14,13 +18,18 @@ parser.add_argument("description", help="give a description fot a task", type=st
 
 args = parser.parse_args()
 
-data = {"Data" : auxData,
+task = {"Data" : auxData,
         "Tasnk Name" : args.taskName,
         "Description" : args.description
         }
-with open("task.json", "w",) as f:
-    json.dump(data,f)
 
+data["tasks"].append(task)
+data["last_id"] = new_id
+
+save_data(data)
+
+
+print(f"ID criado --> {new_id}")
 auxTrue = print(f"Data: {auxData} \nTask Name: {args.taskName} \nDescription: {args.description} ")
 
 
