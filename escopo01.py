@@ -19,7 +19,7 @@ parser.add_argument("description", help="give a description fot a task", type=st
 args = parser.parse_args()
 
 task = {"Data" : auxData,
-        "Tasnk Name" : args.taskName,
+        "Task Name" : args.taskName,
         "Description" : args.description
         }
 
@@ -27,9 +27,10 @@ data["tasks"].append(task)
 data["last_id"] = new_id
 
 save_data(data)
+print(data)
 
 
 print(f"ID criado --> {new_id}")
-auxTrue = print(f"Data: {auxData} \nTask Name: {args.taskName} \nDescription: {args.description} ")
+# auxTrue = print(f"Data: {auxData} \nTask Name: {args.taskName} \nDescription: {args.description} ")
 
 
