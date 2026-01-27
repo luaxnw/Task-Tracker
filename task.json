@@ -1,30 +1,10 @@
 {
-    "last_id": 5,
+    "last_id": 1,
     "tasks": {
         "1": {
-            "Data": "Thu Jan 22 19:21:43 2026",
-            "Task Name": "Nome3",
-            "Description": "Descricao3"
-        },
-        "2": {
-            "Data": "Thu Jan 22 19:21:46 2026",
-            "Task Name": "Nome2",
-            "Description": "Descricao2"
-        },
-        "3": {
-            "Data": "Thu Jan 22 19:21:48 2026",
-            "Task Name": "Nome",
-            "Description": "Descricao"
-        },
-        "4": {
-            "Data": "Fri Jan 23 18:30:38 2026",
-            "Task Name": "tirarlixo",
-            "Description": "demanha"
-        },
-        "5": {
-            "Data": "Fri Jan 23 18:31:13 2026",
-            "Task Name": "estudar",
-            "Description": "tarde"
+            "Data": "Mon Jan 26 22:44:04 2026",
+            "Task Name": "nome2",
+            "Description": "descricao"
         }
     }
 }

@@ -1,36 +1,50 @@
 import argparse
 import time
-import json
-from task import load_data, save_data
+from function import load_data, save_data, edit_task
 
-data = load_data()
-new_id = data["last_id"] + 1
+parser = argparse.ArgumentParser(
+    prog="Task-Tracker",
+    description="Create and edit tasks"
+)
 
-counter = 0
+subparsers = parser.add_subparsers(dest="command", required=True)
 
-curr = time.time()
-auxData = time.ctime(curr)
 
-parser = argparse.ArgumentParser(prog="Task-Tracker",
-                                  description="Create tasks")
-parser.add_argument("taskName", help="Give a name for a task. ", type=str)
-parser.add_argument("description", help="give a description fot a task", type=str)
+add_parser = subparsers.add_parser("add", help="Criar nova task")
+add_parser.add_argument("taskName", type=str, help="Nome da task")
+add_parser.add_argument("description", type=str, help="Descrição da task")
+
+
+edit_parser = subparsers.add_parser("edit", help="Editar task existente")
+edit_parser.add_argument("id", type=int, help="ID da task")
+edit_parser.add_argument("--name", help="Novo nome da task")
+edit_parser.add_argument("--description", help="Nova descrição da task")
+
 
 args = parser.parse_args()
+data = load_data()
 
-task = {"Data" : auxData,
-        "Task Name" : args.taskName,
-        "Description" : args.description
-        }
+if args.command == "add":
+    new_id = str(data["last_id"] + 1)
 
-data["tasks"].append(task)
-data["last_id"] = new_id
+    data["tasks"][new_id] = {
+        "Data": time.ctime(),
+        "Task Name": args.taskName,
+        "Description": args.description
+    }
 
-save_data(data)
-print(data)
+    data["last_id"] += 1
+    save_data(data)
 
+    print(f"Task successfully created! It's ID: {new_id}")
 
-print(f"ID criado --> {new_id}")
-# auxTrue = print(f"Data: {auxData} \nTask Name: {args.taskName} \nDescription: {args.description} ")
+elif args.command == "edit":
+    if not args.name and not args.description:
+        print("Try --name or description. ")
+    else:
+        success = edit_task(args.id, args.name, args.description)
 
-
+        if success:
+            print("Task has been changed. ")
+        else:
+            print("ID not found")
