@@ -1,6 +1,6 @@
 import argparse
 import time
-from function import load_data, save_data, edit_task
+from functions import load_data, save_data, edit_task
 
 parser = argparse.ArgumentParser(
     prog="Task-Tracker",
