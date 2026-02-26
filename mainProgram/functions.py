@@ -17,7 +17,7 @@ def save_data(data):
 def edit_task(task_id, new_name=None, new_description=None):
     data = load_data()
 
-    task_id = str(task_id)  # garante compatibilidade com JSON
+    task_id = str(task_id) 
 
     if task_id not in data["tasks"]:
         return False
@@ -28,6 +28,19 @@ def edit_task(task_id, new_name=None, new_description=None):
     if new_description is not None:
         data["tasks"][task_id]["Description"] = new_description
 
+    save_data(data)
+    return True
+
+def rm_task(task_id):
+    data = load_data()
+
+    task_id = str(task_id)
+
+    if task_id not in data["tasks"]:
+        return False
+    else:
+        del data["tasks"][task_id]
+    
     save_data(data)
     return True
 

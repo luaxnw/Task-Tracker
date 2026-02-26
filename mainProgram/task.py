@@ -1,6 +1,6 @@
 import argparse
 import time
-from functions import load_data, save_data, edit_task
+from functions import load_data, save_data, edit_task, rm_task
 
 parser = argparse.ArgumentParser(
     prog="Task-Tracker",
@@ -19,6 +19,10 @@ edit_parser = subparsers.add_parser("edit", help="Editar task existente")
 edit_parser.add_argument("id", type=int, help="ID da task")
 edit_parser.add_argument("--name", help="Novo nome da task")
 edit_parser.add_argument("--description", help="Nova descrição da task")
+
+rm_parser = subparsers.add_parser("rm", help="Remover task")
+rm_parser.add_argument("id", type=int, help="ID da task")
+
 
 
 args = parser.parse_args()
@@ -48,3 +52,10 @@ elif args.command == "edit":
             print("Task has been changed. ")
         else:
             print("ID not found")
+
+elif args.command == "rm":
+    rm_sucess = rm_task(args.id)
+    if rm_sucess:
+        print("Task has been removed. ")
+    else:
+        print("ID not found")
