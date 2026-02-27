@@ -1,6 +1,6 @@
 import argparse
 import time
-from functions import load_data, save_data, edit_task, rm_task
+from functions import load_data, save_data, edit_task, rm_task, list_tasks
 
 parser = argparse.ArgumentParser(
     prog="Task-Tracker",
@@ -23,6 +23,8 @@ edit_parser.add_argument("--description", help="Nova descrição da task")
 rm_parser = subparsers.add_parser("rm", help="Remover task")
 rm_parser.add_argument("id", type=int, help="ID da task")
 
+show_parser = subparsers.add_parser("list",help="list all tasks")
+show_parser.add_argument("show")
 
 
 args = parser.parse_args()
@@ -59,3 +61,6 @@ elif args.command == "rm":
         print("Task has been removed. ")
     else:
         print("ID not found")
+    
+elif args.command == "list":
+    list_tasks()
