@@ -1,6 +1,6 @@
 import argparse
 import time
-from functions import load_data, save_data, edit_task, rm_task
+from functions import load_data, save_data, edit_task, rm_task, list_tasks
 
 parser = argparse.ArgumentParser(
     prog="Task-Tracker",
@@ -15,13 +15,20 @@ add_parser.add_argument("taskName", type=str, help="Nome da task")
 add_parser.add_argument("description", type=str, help="Descrição da task")
 
 
+
+
+
 edit_parser = subparsers.add_parser("edit", help="Editar task existente")
 edit_parser.add_argument("id", type=int, help="ID da task")
 edit_parser.add_argument("--name", help="Novo nome da task")
 edit_parser.add_argument("--description", help="Nova descrição da task")
+edit_parser.add_argument("--status", help="Novo status da task")
 
 rm_parser = subparsers.add_parser("rm", help="Remover task")
 rm_parser.add_argument("id", type=int, help="ID da task")
+
+show_parser = subparsers.add_parser("list",help="list all tasks")
+
 
 
 
@@ -32,9 +39,10 @@ if args.command == "add":
     new_id = str(data["last_id"] + 1)
 
     data["tasks"][new_id] = {
-        "Data": time.ctime(),
-        "Task Name": args.taskName,
-        "Description": args.description
+        "data": time.ctime(),
+        "task_name": args.taskName,
+        "description": args.description,
+        "status": "To-do"
     }
 
     data["last_id"] += 1
@@ -43,19 +51,22 @@ if args.command == "add":
     print(f"Task successfully created! It's ID: {new_id}")
 
 elif args.command == "edit":
-    if not args.name and not args.description:
-        print("Try --name or description. ")
+    if not args.name and not args.description and not args.status:
+        print("Use --name, --description or --status to edit the task.")
     else:
-        success = edit_task(args.id, args.name, args.description)
+        success = edit_task(args.id, args.name, args.description, args.status)
 
         if success:
-            print("Task has been changed. ")
+            print("Task updated successfully.")
         else:
-            print("ID not found")
-
+            print("Task ID not found.")
+            
 elif args.command == "rm":
     rm_sucess = rm_task(args.id)
     if rm_sucess:
-        print("Task has been removed. ")
+        print("Task has been removed. ")      
     else:
         print("ID not found")
+    
+elif args.command == "list":
+    list_tasks()
