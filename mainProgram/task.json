@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "last_id": 9,
     "tasks": {
@@ -8,4 +9,20 @@
             "status": "inProgress"
         }
     }
+=======
+{
+    "last_id": 5,
+    "tasks": {
+        "1": {
+            "Data": "Fri Feb 27 09:26:33 2026",
+            "Task Name": "teste",
+            "Description": "descricao"
+        },
+        "4": {
+            "Data": "Fri Feb 27 09:31:19 2026",
+            "Task Name": "teste",
+            "Description": "descricao"
+        }
+    }
+>>>>>>> dadace4cfbf3b1401486fb2ad97b0c1230afe5fd
 }
