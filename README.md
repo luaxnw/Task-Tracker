@@ -34,9 +34,12 @@ python main.py
 
 The program supports the following commands:
 
-* **add** → create a new task
-* **edit** → modify an existing task
-* **rm** → remove a task
+* **add** -> create a new task
+* **edit** -> modify an existing task
+* **rm** -> remove a task
+* **list** -> list all tasks
+* **listDone** -> list all done tasks
+* **listUndone** -> list all undone tasks 
 
 ---
 
@@ -179,6 +182,5 @@ task-tracker/
 
 Possible improvements for the project:
 
-* `list` command to display all tasks
-* filter tasks by status
+
 * colored ter
