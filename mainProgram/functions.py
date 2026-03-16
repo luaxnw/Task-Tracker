@@ -42,14 +42,6 @@ def rm_task(task_id):
 
     if task_id not in data["tasks"]:
         return False
-<<<<<<< HEAD
-=======
-    else:
-        if data["last_id"] == int(task_id):
-            data["last_id"] -= 1
-        del data["tasks"][task_id]
-        
->>>>>>> dadace4cfbf3b1401486fb2ad97b0c1230afe5fd
     
     del data["tasks"][task_id]
     save_data(data)
@@ -61,22 +53,45 @@ def list_tasks():
     id = 1
     str(id)
     for id in data["tasks"].keys():
-<<<<<<< HEAD
+
         print(f"id: {id}")
         print(f"data: {data["tasks"][id]["data"]}")
         print(f"task_name: {data["tasks"][id]["task_name"]}")
         print(f"description: {data["tasks"][id]["description"]}")
+        print(f"status: {data["tasks"][id]["status"]}")
         print("\n")
+
+def list_done_tasks():
+    data = load_data()
+    id = 1
+    str(id)
+    for id in data["tasks"].keys():
+        if data["tasks"][id]["status"] == "done" or data["tasks"][id]["status"] == "Done":
+
+            print(f"id: {id}")
+            print(f"data: {data["tasks"][id]["data"]}")
+            print(f"task_name: {data["tasks"][id]["task_name"]}")
+            print(f"description: {data["tasks"][id]["description"]}")
+            print(f"status: {data["tasks"][id]["status"]}")
+
+            print("\n")
+
+def list_undone_tasks():
+    data = load_data()
+    id = 1
+    str(id)
+    for id in data["tasks"].keys():
+        if data["tasks"][id]["status"] != "done" or data["tasks"][id]["status"] != "Done":
+
+            print(f"id: {id}")
+            print(f"data: {data["tasks"][id]["data"]}")
+            print(f"task_name: {data["tasks"][id]["task_name"]}")
+            print(f"description: {data["tasks"][id]["description"]}")
+            print(f"status: {data["tasks"][id]["status"]}")
+
+            print("\n")
         
-=======
-        print(f"ID: {id}")
-        print(f"Data: {data["tasks"][id]["Data"]}")
-        print(f"Task Name: {data["tasks"][id]["Task Name"]}")
-        print(f"Description: {data["tasks"][id]["Description"]}")
-        print("\n")
-        
-        
->>>>>>> dadace4cfbf3b1401486fb2ad97b0c1230afe5fd
+
 
 
 
